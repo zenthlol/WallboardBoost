@@ -1,0 +1,129 @@
+body{
+    background-color: aliceblue;
+}
+
+#header{
+    margin: auto;
+    width: 50%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+
+}
+
+
+
+#table_wb{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.table-secondary th{
+    color: #154c79;
+}
+
+#body_content{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: center;
+
+    margin: auto;
+    margin-top: 20px;
+}
+
+#body_content > *{
+    margin-top: 10px;
+}
+
+#nav-timestamp{
+    width: 50%;
+    background-color: rgb(217, 217, 217);
+    height: 40px;
+    margin-bottom: 5px;
+    outline: none !important;
+}
+
+#nav-timestamp button{
+    font-size: 13px;
+    font-weight: bold;
+    color: #154c79;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#nav-timestamp button:hover {
+    background-color: #eeeaea;
+}
+
+#nav-timestamp button.active {
+    background-color: #666;
+    color: white; /* Change text color to white when button is active */
+}
+
+/* card */
+.card{
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.row{
+    margin-bottom: 5px;
+}
+
+
+.kartu-konten{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card img{
+    width: 70px;
+    height: auto;
+    margin-right: 15px;
+}
+
+.kartu-konten h5{
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 0px;
+}
+
+.card-tulisan{
+    margin-bottom: 0px;
+}
+
+.card-body-img{
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.card-badan{
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.card-buntut{
+    color: #78999f;
+    font-size: 13px;
+
+}
+
+.shadowed-element {
+    /* Horizontal offset, Vertical offset, Blur radius, Spread radius, Color */
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+#footer{
+    margin-top: 10px;
+}
