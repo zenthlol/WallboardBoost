@@ -53,5 +53,41 @@ class WallboardController extends Controller
     //     return view('wallboard.agent-asuransi', compact('wallboards', 'todayRecords', 'thisWeekRecords', 'thisMonthRecords'));
     // }
 
+    public function agentCC(){
+        return view('wallboard.agent-cc');
+    }
 
+    public function spvAsuransi(){
+        return view('wallboard.spv-asuransi');
+    }
+
+    public function spvCC(){
+        return view('wallboard.spv-cc');
+    }
+
+    public function campaignAsuransi(Request $request){
+        $sortOption = $request->query('sort');
+
+        $query = Wallboard::orderBy('deal', 'desc');
+
+        if($sortOption === 'today'){
+            $query->whereDate('tm_created_date', Carbon::today());
+        } elseif ($sortOption === 'thisWeek') {
+            $query->whereBetween('tm_created_date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+        } elseif ($sortOption === 'thisMonth') {
+            $query->whereMonth('tm_created_date', Carbon::now()->month);
+        }
+
+        if ($sortOption === null || $sortOption === 'default') {
+
+        }
+
+        $wallboards = $query->get();
+
+        return view('wallboard.campaign-asuransi', compact('wallboards', 'sortOption'));
+    }
+
+    public function campaignCC(){
+        return view('wallboard.campaign-cc');
+    }
 }

@@ -10,10 +10,11 @@
 
 <ul class="list-group">
     <li class="list-group-item"><a href="{{ route('agentAsuransi') }}">Wallboard Agent Asuransi</a></li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-    <li class="list-group-item">A fourth item</li>
-    <li class="list-group-item">And a fifth one</li>
+    <li class="list-group-item"><a href="{{ route('agentCC') }}">Wallboard Agent CC</a></li>
+    <li class="list-group-item"><a href="{{ route('spvAsuransi') }}">Wallboard SPV Asuransi</a></li>
+    <li class="list-group-item"><a href="{{ route('spvCC') }}">Wallboard SPV CC</a></li>
+    <li class="list-group-item"><a href="{{ route('campaignAsuransi') }}">Wallboard Campaign Asuransi</a></li>
+    <li class="list-group-item"><a href="{{ route('campaignCC') }}">Wallboard Campaign CC</a></li>
   </ul>
 
 
