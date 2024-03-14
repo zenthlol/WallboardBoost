@@ -2,6 +2,8 @@
 
 
 @section('head')
+{{-- Connect to css --}}
+    <link rel="stylesheet" href="assets/css/styles.css">
 @endsection
 
 

@@ -24,8 +24,7 @@
         }
     </style>
 
-    {{-- Connect to css in publc folder --}}
-    <link rel="stylesheet" href="assets/css/styles.css">
+
 
     {{-- Connect to JS --}}
     <script src="assets/js/script.js"></script>
