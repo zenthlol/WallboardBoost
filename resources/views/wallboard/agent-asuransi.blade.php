@@ -40,14 +40,14 @@
                         <h5 class="card-title">No Data is Available</h5>
                     @else
                         @foreach ($wallboards->sortByDesc('deal')->take(1) as $wallboard)
-                        <h5 class="card-title">{{ $wallboard->agent_name }}</h5>
+                        <h5 class="card-title">{{ $wallboard->AGENT_NAME }}</h5>
                         <p class="card-tulisan">
                             <span class="card-badan">Rp. </span>
-                            <span class="card-badan">{{ $wallboard->premi }}</span>
+                            <span class="card-badan">{{ $wallboard->PREMI }}</span>
                             <span class="card-buntut">Premi</span>
                         </p>
                         <p class="card-tulisan">
-                            <span class="card-badan">{{ $wallboard->deal }}</span>
+                            <span class="card-badan">{{ $wallboard->DEAL }}</span>
                             <span class="card-buntut">Deals</span>
                         </p>
                         @endforeach
@@ -69,14 +69,14 @@
                         <h5 class="card-title">No Data is Available</h5>
                     @else
                         @foreach ($wallboards->sortByDesc('deal')->slice(1,1) as $wallboard)
-                        <h5>{{ $wallboard->agent_name }}</h5>
+                        <h5>{{ $wallboard->AGENT_NAME }}</h5>
                         <p class="card-tulisan">
                             <span class="card-badan">Rp. </span>
-                            <span class="card-badan">{{ $wallboard->premi }}</span>
+                            <span class="card-badan">{{ $wallboard->PREMI }}</span>
                             <span class="card-buntut">Premi</span>
                         </p>
                         <p class="card-tulisan">
-                            <span class="card-badan">{{ $wallboard->deal }}</span>
+                            <span class="card-badan">{{ $wallboard->DEAL }}</span>
                             <span class="card-buntut">Deals</span>
                         </p>
                         {{-- <p class="card-text">
@@ -113,13 +113,13 @@
                 <td colspan="4">No Data is Available</td>
             </tr>
         @else
-            @foreach ($wallboards->sortByDesc('deal') as $wallboard)
+            @foreach ($wallboards->sortByDesc('DEAL') as $wallboard)
             @if ($i < 10)
                     <tr>
                         <th scope="row">{{ ++$i }}</th>
-                        <td>{{ $wallboard->user_name }}</td>
-                        <td>{{ $wallboard->deal }}</td>
-                        <td>{{ $wallboard->premi }}</td>
+                        <td>{{ $wallboard->USER_NAME }}</td>
+                        <td>{{ $wallboard->DEAL }}</td>
+                        <td>{{ $wallboard->PREMI }}</td>
                     </tr>
             @endif
             @endforeach

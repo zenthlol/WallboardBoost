@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\vTM_WALLBOARD;
 use App\Models\Wallboard;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class WallboardController extends Controller
 {
+
+
     public function welcome(){
         return view('welcome');
     }
@@ -15,14 +18,14 @@ class WallboardController extends Controller
     public function agentAsuransi(Request $request){
         $sortOption = $request->query('sort');
 
-        $query = Wallboard::orderBy('deal', 'desc');
+        $query = vTM_WALLBOARD::orderBy('DEAL', 'desc');
 
         if($sortOption === 'today'){
-            $query->whereDate('tm_created_date', Carbon::today());
+            $query->whereDate('Tm_Created_Date', Carbon::today());
         } elseif ($sortOption === 'thisWeek') {
-            $query->whereBetween('tm_created_date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+            $query->whereBetween('Tm_Created_Date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
         } elseif ($sortOption === 'thisMonth') {
-            $query->whereMonth('tm_created_date', Carbon::now()->month);
+            $query->whereMonth('Tm_Created_Date', Carbon::now()->month);
         }
 
         if ($sortOption === null || $sortOption === 'default') {
@@ -54,7 +57,8 @@ class WallboardController extends Controller
     // }
 
     public function agentCC(){
-        return view('wallboard.agent-cc');
+        $wallboards = vTM_WALLBOARD::All();
+        return view('wallboard.agent-cc', compact('wallboards'));
     }
 
     public function spvAsuransi(){
@@ -68,14 +72,14 @@ class WallboardController extends Controller
     public function campaignAsuransi(Request $request){
         $sortOption = $request->query('sort');
 
-        $query = Wallboard::orderBy('deal', 'desc');
+        $query = vTM_WALLBOARD::orderBy('DEAL', 'desc');
 
         if($sortOption === 'today'){
-            $query->whereDate('tm_created_date', Carbon::today());
+            $query->whereDate('Tm_Created_Date', Carbon::today());
         } elseif ($sortOption === 'thisWeek') {
-            $query->whereBetween('tm_created_date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+            $query->whereBetween('Tm_Created_Date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
         } elseif ($sortOption === 'thisMonth') {
-            $query->whereMonth('tm_created_date', Carbon::now()->month);
+            $query->whereMonth('Tm_Created_Date', Carbon::now()->month);
         }
 
         if ($sortOption === null || $sortOption === 'default') {
