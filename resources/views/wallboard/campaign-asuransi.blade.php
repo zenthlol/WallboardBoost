@@ -4,6 +4,7 @@
 @section('head')
 {{-- Connect to css --}}
     <link rel="stylesheet" href="assets/css/stylesCampaignAsuransi.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @endsection
 
 
@@ -16,7 +17,7 @@
 
 <section id="body_content">
     {{-- BODY SEBELAH KIRI --}}
-    <div class="body-left">
+    <div class="body-left shadowed-element  ">
         <div class="body-left-up">
             <span>
                 Top 5 Campaign
@@ -30,7 +31,65 @@
         </div>
 
         <div class="body-left-down">
-            pie chart
+            {{-- PIE CHART --}}
+
+            <div id="chart-container" style="width: 400px; height: 400px;">
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <script>
+                var ctx = document.getElementById('myChart').getContext('2d');
+
+                var data = {
+                    labels: ['Data 1', 'Data 2', 'Data 3', 'Data 4', 'Data 5'],
+                    datasets: [{
+                        label: 'Total Deals',
+                        data: [50, 20, 30, 15, 10], // Replace with your actual data values
+
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1,
+
+                        // Additional Chart.js options for each data point:
+                        hoverBackgroundColor: [ // Background color on hover
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        hoverBorderColor: [ // Border color on hover (optional)
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ]
+                    },
+
+                ]
+                };
+
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        responsive: true
+                    }
+                });
+            </script>
         </div>
 
     </div>
@@ -59,13 +118,13 @@
                     <td colspan="4">No Data is Available</td>
                 </tr>
             @else
-                @foreach ($wallboards->sortByDesc('deal') as $wallboard)
+                @foreach ($wallboards->sortByDesc('DEAL') as $wallboard)
                 @if ($i < 10)
                         <tr>
                             <th scope="row">{{ ++$i }}</th>
-                            <td>{{ $wallboard->campaign_name }}</td>
-                            <td>{{ $wallboard->deal }}</td>
-                            <td>{{ $wallboard->premi }}</td>
+                            <td>{{ $wallboard->CAMPAIGN_NAME }}</td>
+                            <td>{{ $wallboard->DEAL }}</td>
+                            <td>{{ $wallboard->PREMI }}</td>
                         </tr>
                 @endif
                 @endforeach

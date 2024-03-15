@@ -56,8 +56,8 @@ body{
 .body-left-up span{
     color: #154c79;
     font-weight: bold;
-    font-size: 15px;
-    margin-top: 4px;
+    font-size: 18px;
+    margin-top: 3px;
 }
 
 .body-right{
@@ -67,7 +67,7 @@ body{
 
 
 #nav-timestamp{
-    width: 30%;
+    width: 25%;
     background-color: rgb(217, 217, 217);
     height: 40px;
     margin-bottom: 5px;
@@ -149,6 +149,14 @@ body{
     box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
+
+
+
 #footer{
     margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
 }
+

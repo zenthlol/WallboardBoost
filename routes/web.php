@@ -26,4 +26,5 @@ Route::get('/spv-cc', [WallboardController::class, 'spvCC'])->name('spvCC');
 
 Route::get('/campaign-asuransi', [WallboardController::class, 'campaignAsuransi'])->name('campaignAsuransi');
 
+
 Route::get('/campaign-cc', [WallboardController::class, 'campaignCC'])->name('campaignCC');

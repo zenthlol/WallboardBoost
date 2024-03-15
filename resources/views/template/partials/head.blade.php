@@ -24,6 +24,9 @@
         }
     </style>
 
+    {{-- responsive website according to screen --}}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 
     {{-- Connect to JS --}}

@@ -88,8 +88,24 @@ class WallboardController extends Controller
 
         $wallboards = $query->get();
 
-        return view('wallboard.campaign-asuransi', compact('wallboards', 'sortOption'));
+
+        // for sending data for areaChart
+        $data = [
+            'labels' => ['January', 'February', 'March', 'April', 'May'],
+            'data' => [65, 59, 80, 81, 56],
+        ];
+
+        return view('wallboard.campaign-asuransi', compact('wallboards', 'sortOption', 'data'));
     }
+
+    // public function areaChart(){
+    //     // Replace this with your actual data retrieval logic
+    //     $data = [
+    //         'labels' => ['January', 'February', 'March', 'April', 'May'],
+    //         'data' => [65, 59, 80, 81, 56],
+    //     ];
+    //     return view('wallboard.campaign-asuransi', compact('data'));
+    // }
 
     public function campaignCC(){
         return view('wallboard.campaign-cc');
