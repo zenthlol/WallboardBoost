@@ -15,6 +15,7 @@ class WallboardController extends Controller
         return view('welcome');
     }
 
+    // Wallboard Agent Asuransi
     public function agentAsuransi(Request $request){
         $sortOption = $request->query('sort');
 
@@ -70,32 +71,31 @@ class WallboardController extends Controller
     }
 
     public function campaignAsuransi(Request $request){
-        $sortOption = $request->query('sort');
 
+        // VARIALE for pie chart
+        $sortOption = $request->query('sort');
         $query = vTM_WALLBOARD::orderBy('DEAL', 'desc');
 
-        if($sortOption === 'today'){
-            $query->whereDate('Tm_Created_Date', Carbon::today());
-        } elseif ($sortOption === 'thisWeek') {
-            $query->whereBetween('Tm_Created_Date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
-        } elseif ($sortOption === 'thisMonth') {
-            $query->whereMonth('Tm_Created_Date', Carbon::now()->month);
+        if ($sortOption === 'byDeals') {
+            $query->orderBy('DEAL', 'desc');
+        } elseif ($sortOption === 'byPremi') {
+            $query->orderBy('PREMI', 'desc');
         }
 
         if ($sortOption === null || $sortOption === 'default') {
-
         }
 
-        $wallboards = $query->get();
+        $campaignDataPie = $query->pluck('CAMPAIGN_NAME')->take(5);
+        $dealDataPie = $query->pluck('DEAL')->take(5);
+        $premiDataPie = $query->pluck('PREMI')->take(5);
+
+        // buat leaderboard
+        $leaderboardDatas = $query->get();
 
 
-        // for sending data for areaChart
-        $data = [
-            'labels' => ['January', 'February', 'March', 'April', 'May'],
-            'data' => [65, 59, 80, 81, 56],
-        ];
 
-        return view('wallboard.campaign-asuransi', compact('wallboards', 'sortOption', 'data'));
+
+        return view('wallboard.campaign-asuransi', compact('sortOption', 'campaignDataPie', 'dealDataPie', 'premiDataPie','leaderboardDatas'));
     }
 
     // public function areaChart(){

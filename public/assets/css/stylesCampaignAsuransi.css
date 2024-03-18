@@ -60,9 +60,25 @@ body{
     margin-top: 3px;
 }
 
+.body-left-down{
+
+    margin: 20px auto;
+    width: 50%;
+}
+
+#chartDiv{
+    width:500px;
+    height: auto
+}
+
 .body-right{
     margin-left: 10px;
     width: 30%;
+}
+
+.campaign-leaderboard-head{
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 

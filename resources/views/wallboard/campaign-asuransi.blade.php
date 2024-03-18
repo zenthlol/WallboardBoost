@@ -5,6 +5,8 @@
 {{-- Connect to css --}}
     <link rel="stylesheet" href="assets/css/stylesCampaignAsuransi.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 @endsection
 
 
@@ -17,76 +19,78 @@
 
 <section id="body_content">
     {{-- BODY SEBELAH KIRI --}}
-    <div class="body-left shadowed-element  ">
+    <div class="body-left shadowed-element">
         <div class="body-left-up">
             <span>
                 Top 5 Campaign
             </span>
             {{-- Navigation Timestamp --}}
             <div class="btn-group btn-group-lg" id="nav-timestamp">
-                <button type="button" class="btn {{ $sortOption === 'today' ? 'active' : '' }}" id="btn_today_agent_asuransi" onclick="window.location='{{ route('campaignAsuransi', ['sort' => 'today']) }}'">by Deals</button>
+                <button type="button" class="btn {{ $sortOption === 'byDeals' ? 'active' : '' }}" id="btn_today_agent_asuransi" onclick="window.location='{{ route('campaignAsuransi', ['sort' => 'byDeals']) }}'">by Deals</button>
 
-                <button type="button" class="btn {{ $sortOption === 'thisWeek' ? 'active' : '' }}" id="btn_tweek_agent_asuransi" onclick="window.location='{{ route('campaignAsuransi', ['sort' => 'thisWeek']) }}'">by Premi</button>
+                <button type="button" class="btn {{ $sortOption === 'byPremi' ? 'active' : '' }}" id="btn_tweek_agent_asuransi" onclick="window.location='{{ route('campaignAsuransi', ['sort' => 'byPremi']) }}'">by Premi</button>
             </div>
         </div>
 
         <div class="body-left-down">
             {{-- PIE CHART --}}
 
-            <div id="chart-container" style="width: 400px; height: 400px;">
+            <div id="chartDiv" style="">
                 <canvas id="myChart"></canvas>
             </div>
 
+
+
+
             <script>
-                var ctx = document.getElementById('myChart').getContext('2d');
+                let campaignArray = @json($campaignDataPie);
+                let dealArray = @json($dealDataPie);
+                let premiArray = @json($premiDataPie);
 
-                var data = {
-                    labels: ['Data 1', 'Data 2', 'Data 3', 'Data 4', 'Data 5'],
-                    datasets: [{
-                        label: 'Total Deals',
-                        data: [50, 20, 30, 15, 10], // Replace with your actual data values
+                // TEMP
+                console.log(campaignArray);
+                console.log(dealArray);
+                console.log(premiArray);
+                // console.log(campaignArray);
 
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)'
-                        ],
-                        borderWidth: 1,
 
-                        // Additional Chart.js options for each data point:
-                        hoverBackgroundColor: [ // Background color on hover
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)'
-                        ],
-                        hoverBorderColor: [ // Border color on hover (optional)
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)'
-                        ]
+                // nama kampanye
+                const xValues = campaignArray;
+
+
+                // deals kampannye
+                const yValues = dealArray;
+                const zValues = premiArray;
+                const barColors = [
+                "#b91d47",
+                "#00aba9",
+                "#2b5797",
+                "#e8c3b9",
+                "#1e7145"
+                ];
+
+                new Chart("myChart", {
+                    type: "pie",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                        }]
                     },
-
-                ]
-                };
-
-                var myChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: data,
                     options: {
-                        responsive: true
+                        title: {
+                        display: true,
+                        text: "World Wide Wine Production 2018"
+                        },
+                        // Disable hover functionality
+                        hover: {
+                        mode: null
+                        },
+                        // Optionally, disable tooltips as well
+                        tooltips: {
+                        enabled: false
+                        }
                     }
                 });
             </script>
@@ -100,6 +104,16 @@
     <div class="body-right">
         {{-- TABLE LEADERBOARDS --}}
         <table class="table table-striped" id="table_wb" style="width: 100%; margin-bottom: 10px">
+            <div class="campaign-leaderboard-head">
+                @if ($sortOption === 'byDeals')
+                    By Deals (Current Sorting)
+                @elseif ($sortOption === 'byPremi')
+                    By Premi (Current Sorting)
+                @else
+                    Sort By:
+                @endif
+            </div>
+
             <thead>
             <tr class="table-secondary">
                 <th scope="col">Rank</th>
@@ -113,21 +127,32 @@
                 $i = 0
             @endphp
 
-            @if ($wallboards->isEmpty())
+            @if ($leaderboardDatas->isEmpty())
                 <tr>
                     <td colspan="4">No Data is Available</td>
                 </tr>
+
             @else
-                @foreach ($wallboards->sortByDesc('DEAL') as $wallboard)
-                @if ($i < 10)
+
+                @foreach ($leaderboardDatas as $leaderboardData)
+                @if ($i < 5)
                         <tr>
                             <th scope="row">{{ ++$i }}</th>
-                            <td>{{ $wallboard->CAMPAIGN_NAME }}</td>
-                            <td>{{ $wallboard->DEAL }}</td>
-                            <td>{{ $wallboard->PREMI }}</td>
+                            <td>{{ $leaderboardData->CAMPAIGN_NAME }}</td>
+                            <td>{{ $leaderboardData->DEAL }}</td>
+                            <td>{{ $leaderboardData->PREMI }}</td>
                         </tr>
                 @endif
                 @endforeach
+
+                {{-- @for ($i = 0; $i<5; $i++)
+                    <tr>
+                        <th scope="row">{{ $i + 1 }}</th>
+                        <td>{{ $campaignData[$i] }}</td>
+                        <td>{{ $dealData[$i] }}</td>
+                        <td>{{ $premiData[$i] }}</td>
+                    </tr>
+                @endfor --}}
             @endif
             </tbody>
         </table>

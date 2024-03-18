@@ -32,5 +32,8 @@
     {{-- Connect to JS --}}
     <script src="assets/js/script.js"></script>
 
+
+
     @yield('head')
 </head>
+
