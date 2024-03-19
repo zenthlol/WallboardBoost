@@ -74,7 +74,7 @@ class WallboardController extends Controller
 
         // VARIALE for pie chart
         $sortOption = $request->query('sort');
-        $query = vTM_WALLBOARD::orderBy('DEAL', 'desc');
+        $query = vTM_WALLBOARD::query();
 
         if ($sortOption === 'byDeals') {
             $query->orderBy('DEAL', 'desc');
@@ -82,8 +82,8 @@ class WallboardController extends Controller
             $query->orderBy('PREMI', 'desc');
         }
 
-        if ($sortOption === null || $sortOption === 'default') {
-        }
+        // if ($sortOption === null || $sortOption === 'default') {
+        // }
 
         $campaignDataPie = $query->pluck('CAMPAIGN_NAME')->take(5);
         $dealDataPie = $query->pluck('DEAL')->take(5);
@@ -97,6 +97,7 @@ class WallboardController extends Controller
 
         return view('wallboard.campaign-asuransi', compact('sortOption', 'campaignDataPie', 'dealDataPie', 'premiDataPie','leaderboardDatas'));
     }
+
 
     // public function areaChart(){
     //     // Replace this with your actual data retrieval logic

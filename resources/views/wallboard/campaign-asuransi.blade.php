@@ -26,9 +26,9 @@
             </span>
             {{-- Navigation Timestamp --}}
             <div class="btn-group btn-group-lg" id="nav-timestamp">
-                <button type="button" class="btn {{ $sortOption === 'byDeals' ? 'active' : '' }}" id="btn_today_agent_asuransi" onclick="window.location='{{ route('campaignAsuransi', ['sort' => 'byDeals']) }}'">by Deals</button>
+                <button type="button" id="nav-button-1" class="btn {{ $sortOption === 'byDeals' ? 'active' : '' }}" id="btn_today_agent_asuransi" onclick="window.location='{{ route('campaignAsuransi', ['sort' => 'byDeals']) }}'">by Deals</button>
 
-                <button type="button" class="btn {{ $sortOption === 'byPremi' ? 'active' : '' }}" id="btn_tweek_agent_asuransi" onclick="window.location='{{ route('campaignAsuransi', ['sort' => 'byPremi']) }}'">by Premi</button>
+                <button type="button" id="nav-button-2" class="btn {{ $sortOption === 'byPremi' ? 'active' : '' }}" id="btn_tweek_agent_asuransi" onclick="window.location='{{ route('campaignAsuransi', ['sort' => 'byPremi']) }}'">by Premi</button>
             </div>
         </div>
 
@@ -59,7 +59,9 @@
 
 
                 // deals kampannye
-                const yValues = dealArray;
+                // const yValues = dealArray;
+                const yValues = [1,2,3,4,5,];
+
                 const zValues = premiArray;
                 const barColors = [
                 "#b91d47",
@@ -106,11 +108,11 @@
         <table class="table table-striped" id="table_wb" style="width: 100%; margin-bottom: 10px">
             <div class="campaign-leaderboard-head">
                 @if ($sortOption === 'byDeals')
-                    By Deals (Current Sorting)
+                    Sorting by : Deals
                 @elseif ($sortOption === 'byPremi')
-                    By Premi (Current Sorting)
+                    Sorting by : Premi
                 @else
-                    Sort By:
+                    Sorting by : Premi
                 @endif
             </div>
 
