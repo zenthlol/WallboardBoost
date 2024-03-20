@@ -113,7 +113,7 @@
                 <td colspan="4">No Data is Available</td>
             </tr>
         @else
-            @foreach ($wallboards->sortByDesc('DEAL') as $wallboard)
+            @foreach ($wallboards as $wallboard)
             @if ($i < 10)
                     <tr>
                         <th scope="row">{{ ++$i }}</th>
@@ -130,12 +130,6 @@
         </tbody>
     </table>
 </section>
-
-
-
-
-
-
 
 @endsection
 

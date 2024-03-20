@@ -60,9 +60,10 @@
 
                 // deals kampannye
                 // const yValues = dealArray;
-                const yValues = [1,2,3,4,5,];
+                // const yValues = [1,2,3,4,5];
+                const yValues = premiArray;
 
-                const zValues = premiArray;
+                // const zValues = premiArray;
                 const barColors = [
                 "#b91d47",
                 "#00aba9",
@@ -112,7 +113,7 @@
                 @elseif ($sortOption === 'byPremi')
                     Sorting by : Premi
                 @else
-                    Sorting by : Premi
+                    Sorting by : Deals
                 @endif
             </div>
 
@@ -143,6 +144,7 @@
                             <td>{{ $leaderboardData->CAMPAIGN_NAME }}</td>
                             <td>{{ $leaderboardData->DEAL }}</td>
                             <td>{{ $leaderboardData->PREMI }}</td>
+                            <td>{{ $leaderboardData->PARTNER }}</td>
                         </tr>
                 @endif
                 @endforeach

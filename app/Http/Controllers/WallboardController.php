@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\vTM_WALLBOARD;
 use App\Models\Wallboard;
+use App\Models\Wallboard_Kenneth2;
+use App\Models\Wallboard_Kenneth3;
+use App\Models\Wallboard_Kenneth_Agent;
+use App\Models\Wallboard_Kenneth_SPV;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -19,7 +23,9 @@ class WallboardController extends Controller
     public function agentAsuransi(Request $request){
         $sortOption = $request->query('sort');
 
-        $query = vTM_WALLBOARD::orderBy('DEAL', 'desc');
+        $query = Wallboard_Kenneth_Agent::orderBy('PREMI', 'desc');
+
+        $query->where('PARTNER', 'like', 'INS%');
 
         if($sortOption === 'today'){
             $query->whereDate('Tm_Created_Date', Carbon::today());
@@ -38,52 +44,94 @@ class WallboardController extends Controller
         return view('wallboard.agent-asuransi', compact('wallboards', 'sortOption'));
     }
 
-    // public function agentAsuransi(){
-    //     $wallboards = Wallboard::all();
 
-    //     // Return Data based on today's date only
-    //     $todayRecords = Wallboard::whereDate('tm_created_date', Carbon::today())->get();
+    // Wallboard Agent CC
+    public function agentCC(Request $request){
+        $sortOption = $request->query('sort');
 
-    //     // Return Data based on This week's date
-    //     $startWeekDate = Carbon::now()->startOfWeek();
-    //     $endWeekDate = Carbon::now()->endOfWeek();
-    //     $thisWeekRecords = Wallboard::whereBetween('tm_created_date', [$startWeekDate, $endWeekDate])->get();
+        $query = Wallboard_Kenneth_Agent::orderBy('DEAL', 'desc');
 
-    //     // Return Data based on This month's date
-    //     $startMonthDate = Carbon::now()->startOfMonth();
-    //     $endMonthDate = Carbon::now()->endOfMonth();
-    //     $thisMonthRecords = Wallboard::whereBetween('tm_created_date', [$startMonthDate, $endMonthDate])->get();
+        $query->where('PARTNER', 'like', 'CC%');
 
-    //     return view('wallboard.agent-asuransi', compact('wallboards', 'todayRecords', 'thisWeekRecords', 'thisMonthRecords'));
-    // }
+        if($sortOption === 'today'){
+            $query->whereDate('Tm_Created_Date', Carbon::today());
+        } elseif ($sortOption === 'thisWeek') {
+            $query->whereBetween('Tm_Created_Date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+        } elseif ($sortOption === 'thisMonth') {
+            $query->whereMonth('Tm_Created_Date', Carbon::now()->month);
+        }
 
-    public function agentCC(){
-        $wallboards = vTM_WALLBOARD::All();
-        return view('wallboard.agent-cc', compact('wallboards'));
+        if ($sortOption === null || $sortOption === 'default') {
+
+        }
+
+        $wallboards = $query->get();
+
+        return view('wallboard.agent-cc', compact('wallboards', 'sortOption'));
     }
 
-    public function spvAsuransi(){
-        return view('wallboard.spv-asuransi');
+    public function spvAsuransi(Request $request){
+        $sortOption = $request->query('sort');
+
+        $query = Wallboard_Kenneth_SPV::orderBy('PREMI', 'desc');
+
+        $query->where('PARTNER', 'like', 'INS%');
+
+        if($sortOption === 'today'){
+            $query->whereDate('Tm_Created_Date', Carbon::today());
+        } elseif ($sortOption === 'thisWeek') {
+            $query->whereBetween('Tm_Created_Date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+        } elseif ($sortOption === 'thisMonth') {
+            $query->whereMonth('Tm_Created_Date', Carbon::now()->month);
+        }
+
+        if ($sortOption === null || $sortOption === 'default') {
+
+        }
+
+        $wallboards = $query->get();
+
+        return view('wallboard.spv-asuransi', compact('wallboards', 'sortOption'));
     }
 
-    public function spvCC(){
-        return view('wallboard.spv-cc');
+    public function spvCC(Request $request){
+        $sortOption = $request->query('sort');
+
+        $query = Wallboard_Kenneth_SPV::orderBy('DEAL', 'desc');
+
+        $query->where('PARTNER', 'like', 'CC%');
+
+        if($sortOption === 'today'){
+            $query->whereDate('Tm_Created_Date', Carbon::today());
+        } elseif ($sortOption === 'thisWeek') {
+            $query->whereBetween('Tm_Created_Date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+        } elseif ($sortOption === 'thisMonth') {
+            $query->whereMonth('Tm_Created_Date', Carbon::now()->month);
+        }
+
+        if ($sortOption === null || $sortOption === 'default') {
+
+        }
+
+        $wallboards = $query->get();
+
+        return view('wallboard.spv-cc', compact('wallboards', 'sortOption'));
     }
 
     public function campaignAsuransi(Request $request){
-
         // VARIALE for pie chart
         $sortOption = $request->query('sort');
-        $query = vTM_WALLBOARD::query();
+        $query = Wallboard_Kenneth_Agent::query();
+
+        $query->where('PARTNER', 'like', 'INS%');
 
         if ($sortOption === 'byDeals') {
             $query->orderBy('DEAL', 'desc');
-        } elseif ($sortOption === 'byPremi') {
+        } else if ($sortOption === 'byPremi') {
             $query->orderBy('PREMI', 'desc');
+        } else{
+            $query->orderBy('DEAL', 'desc');
         }
-
-        // if ($sortOption === null || $sortOption === 'default') {
-        // }
 
         $campaignDataPie = $query->pluck('CAMPAIGN_NAME')->take(5);
         $dealDataPie = $query->pluck('DEAL')->take(5);
@@ -92,10 +140,32 @@ class WallboardController extends Controller
         // buat leaderboard
         $leaderboardDatas = $query->get();
 
-
-
-
         return view('wallboard.campaign-asuransi', compact('sortOption', 'campaignDataPie', 'dealDataPie', 'premiDataPie','leaderboardDatas'));
+    }
+
+    public function campaignCC(Request $request){
+        // VARIALE for pie chart
+        $sortOption = $request->query('sort');
+        $query = Wallboard_Kenneth_Agent::query();
+
+        $query->where('PARTNER', 'like', 'CC%');
+
+        if ($sortOption === 'byDeals') {
+            $query->orderBy('DEAL', 'desc');
+        } else if ($sortOption === 'byPremi') {
+            $query->orderBy('PREMI', 'desc');
+        } else{
+            $query->orderBy('DEAL', 'desc');
+        }
+
+        $campaignDataPie = $query->pluck('CAMPAIGN_NAME')->take(5);
+        $dealDataPie = $query->pluck('DEAL')->take(5);
+        $premiDataPie = $query->pluck('PREMI')->take(5);
+
+        // buat leaderboard
+        $leaderboardDatas = $query->get();
+
+        return view('wallboard.campaign-cc', compact('sortOption', 'campaignDataPie', 'dealDataPie', 'premiDataPie','leaderboardDatas'));
     }
 
 
@@ -108,7 +178,5 @@ class WallboardController extends Controller
     //     return view('wallboard.campaign-asuransi', compact('data'));
     // }
 
-    public function campaignCC(){
-        return view('wallboard.campaign-cc');
-    }
+
 }
