@@ -3,7 +3,7 @@
 
 @section('head')
 {{-- Connect to css --}}
-    <link rel="stylesheet" href="assets/css/stylesWBAgentAssuransi.css">
+    <link rel="stylesheet" href="assets/css/stylesWB.css">
 @endsection
 
 

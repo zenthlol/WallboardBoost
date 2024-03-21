@@ -19,3 +19,4 @@ var btn_tmonth_agent_asuransi = document.getElementById("btn_tmonyh_agent_asuran
 // setInterval(alternateClicks, 16000); // Repeat the cycle every 16 seconds
 
 
+

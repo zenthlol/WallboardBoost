@@ -3,7 +3,8 @@
 
 @section('head')
 {{-- Connect to css --}}
-    <link rel="stylesheet" href="assets/css/stylesCampaignAsuransi.css">
+    <link rel="stylesheet" href="assets/css/stylesCampaignWB.css">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
@@ -39,9 +40,6 @@
                 <canvas id="myChart"></canvas>
             </div>
 
-
-
-
             <script>
                 let campaignArray = @json($campaignDataPie);
                 let dealArray = @json($dealDataPie);
@@ -57,11 +55,20 @@
                 // nama kampanye
                 const xValues = campaignArray;
 
+                // isi pie chart/data pie chart.
+                let yValues = premiArray;
 
-                // deals kampannye
-                // const yValues = dealArray;
-                // const yValues = [1,2,3,4,5];
-                const yValues = premiArray;
+                // untuk mengganti data pada pie chart tergantung sortingnya ketika button di klik.
+                const buttonDeals = document.getElementById("nav-button-1");
+                const buttonPremi = document.getElementById("nav-button-2");
+
+                buttonDeals.addEventListener("click", function(){
+                    yValues = dealArray;
+                });
+
+                buttonPremi.addEventListener("click", function(){
+                    yValues = premiArray;
+                });
 
                 // const zValues = premiArray;
                 const barColors = [

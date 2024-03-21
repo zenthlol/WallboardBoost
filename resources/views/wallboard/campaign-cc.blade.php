@@ -3,7 +3,7 @@
 
 @section('head')
 {{-- Connect to css --}}
-    <link rel="stylesheet" href="assets/css/stylesCampaignAsuransi.css">
+    <link rel="stylesheet" href="assets/css/stylesCampaignWB.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
@@ -49,7 +49,7 @@
 
                 // deals kampannye
                 // const yValues = dealArray;
-                const yValues = [1,2,3,4,5,];
+                const yValues = dealArray;
 
                 const barColors = [
                 "#b91d47",
