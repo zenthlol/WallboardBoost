@@ -46,8 +46,13 @@
                 let premiArray = @json($premiDataPie);
 
                 // TEMP
+                console.log("campaign array :");
                 console.log(campaignArray);
+
+                console.log("deal array :");
                 console.log(dealArray);
+
+                console.log("premi array :");
                 console.log(premiArray);
                 // console.log(campaignArray);
 
@@ -56,19 +61,10 @@
                 const xValues = campaignArray;
 
                 // isi pie chart/data pie chart.
-                let yValues = premiArray;
+                const yValues = premiArray
 
                 // untuk mengganti data pada pie chart tergantung sortingnya ketika button di klik.
-                const buttonDeals = document.getElementById("nav-button-1");
-                const buttonPremi = document.getElementById("nav-button-2");
 
-                buttonDeals.addEventListener("click", function(){
-                    yValues = dealArray;
-                });
-
-                buttonPremi.addEventListener("click", function(){
-                    yValues = premiArray;
-                });
 
                 // const zValues = premiArray;
                 const barColors = [
@@ -79,7 +75,7 @@
                 "#1e7145"
                 ];
 
-                new Chart("myChart", {
+                let chart = new Chart("myChart", {
                     type: "pie",
                     data: {
                         labels: xValues,
@@ -91,7 +87,7 @@
                     options: {
                         title: {
                         display: true,
-                        text: "World Wide Wine Production 2018"
+                        text: "Top 5 Campaign"
                         },
                         // Disable hover functionality
                         hover: {
@@ -103,6 +99,30 @@
                         }
                     }
                 });
+
+
+                const buttonDeals = document.getElementById("nav-button-1");
+                const buttonPremi = document.getElementById("nav-button-2");
+
+                let updatedYValues;
+                buttonDeals.addEventListener("click", function(){
+                    updatedYValues = dealArray;
+                    updateChart();
+                });
+
+                buttonPremi.addEventListener("click", function(){
+                    updatedYValues = premiArray;
+                    updateChart();
+                });
+
+                // Update logic (assuming updatedYValues holds the new data)
+                function updateChart() {
+                    chart.data.datasets[0].data = updatedYValues;
+                    chart.update();
+                }
+
+
+
             </script>
         </div>
 

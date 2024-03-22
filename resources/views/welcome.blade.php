@@ -22,12 +22,12 @@
 </section>
 
 <ul class="list-group">
-    <li class="list-group-item"><a href="{{ route('agentAsuransi') }}">Dashboard System Admin Asuransi</a></li>
-    <li class="list-group-item"><a href="{{ route('agentCC') }}">Dashboard System Administrator Credit Card </a></li>
-    <li class="list-group-item"><a href="{{ route('spvAsuransi') }}">Dashboard Supervisor Asuransi </a></li>
-    <li class="list-group-item"><a href="{{ route('spvCC') }}">Dashboard Supervisor Credit Card</a></li>
-    <li class="list-group-item"><a href="{{ route('campaignAsuransi') }}">Dashboard Manager Asuransi </a></li>
-    <li class="list-group-item"><a href="{{ route('campaignCC') }}">Dashboard Manager Credit Card/Assitant Credit Card</a></li>
+    <li class="list-group-item"><a href="{{ route('sysAdminAsuransi') }}">Dashboard System Admin Asuransi</a></li>
+    <li class="list-group-item"><a href="{{ route('sysAdminCC') }}">Dashboard System Administrator Credit Card </a></li>
+    <li class="list-group-item"><a href="{{ route('dashSpvAsuransi') }}">Dashboard Supervisor Asuransi </a></li>
+    <li class="list-group-item"><a href="{{ route('dashSpvCC') }}">Dashboard Supervisor Credit Card</a></li>
+    <li class="list-group-item"><a href="{{ route('managerAsuransi') }}">Dashboard Manager Asuransi </a></li>
+    <li class="list-group-item"><a href="{{ route('managerCC') }}">Dashboard Manager Credit Card/Assitant Credit Card</a></li>
 </ul>
 
 

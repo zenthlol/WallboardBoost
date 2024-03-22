@@ -1,0 +1,224 @@
+body{
+    background-color: aliceblue;
+}
+
+#header{
+    margin: auto;
+    width: 50%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+
+}
+
+
+
+#table_dashboard{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.table-secondary th{
+    color: #154c79;
+}
+
+#body_content{
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+
+
+    margin-top: 20px;
+}
+
+.body-left{
+    border-radius: 10px;
+    margin-right: 10px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+
+}
+
+.pagination{
+    max-width: 400px;
+    height: auto;
+}
+
+.body-campaign-data{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+
+}
+
+.pie-chart-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+
+}
+
+.pie-chart-header span{
+    color: #154c79;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 3px;
+}
+
+.pie-chart-content{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+
+.body-right{
+    margin-left: 50px;
+    width: 40%;
+}
+
+.campaign-leaderboard-head{
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+#nav-timestamp{
+    width: 25%;
+    background-color: rgb(217, 217, 217);
+    height: 40px;
+    margin-bottom: 5px;
+    outline: none !important;
+}
+
+#nav-timestamp button{
+    font-size: 13px;
+    font-weight: bold;
+    color: #154c79;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#nav-timestamp button:hover {
+    background-color: #eeeaea;
+}
+
+#nav-timestamp button.active {
+    background-color: #666;
+    color: white; /* Change text color to white when button is active */
+}
+
+/* card */
+.card-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.card{
+
+    border-radius: 10px;
+    padding: 10px;
+    text-align: right;
+    width: 230px;
+}
+
+.card span{
+    color: #1b69b8;
+    font-family: 'Poppins';
+    font-size: 25px;
+}
+/* adsadsaas
+ */
+
+.top-agent-header{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+
+}
+
+.top-agent-header span{
+    color: #1b69b8;
+    font-weight: bold;
+    font-size: 23px;
+
+}
+
+.top-agent-content{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-bottom: 20px;
+}
+/* asdasdasdsadasa */
+.kartu-konten{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+.kartu-konten h5{
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 0px;
+}
+
+.card-tulisan{
+    margin-bottom: 0px;
+}
+
+.card-body-img{
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.card-badan{
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.card-buntut{
+    color: #78999f;
+    font-size: 13px;
+
+}
+
+.shadowed-element {
+    /* Horizontal offset, Vertical offset, Blur radius, Spread radius, Color */
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+#footer{
+    margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+}
+
