@@ -9,6 +9,7 @@
     {{-- Connect to Bootstrap --}}
     <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.css">
 
+
     {{-- Import Font Locally --}}
     <style>
         @font-face{
@@ -30,7 +31,14 @@
 
 
     {{-- Connect to JS --}}
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/chart.js"></script>
+
 
 
 

@@ -5,7 +5,7 @@
 {{-- Connect to css --}}
     <link rel="stylesheet" href="assets/css/stylesDashboard.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 
 @endsection
@@ -14,7 +14,25 @@
 @section('body')
 
 <section id="header">
-    Campaign Asuransi Data
+    <span>
+        Campaign Asuransi Data
+    </span>
+    <div class="my-dropdown">
+        <p>Show data : </p>
+        {{-- dropdown menu --}}
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown button
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
+
+
+    </div>
 </section>
 
 
@@ -56,12 +74,14 @@
                         <td>{{ $leaderboardData->PREMI }}</td>
                         </tr>
                 @endforeach
-                <div class="pagination">
-                    {{ $leaderboardDatas->links() }}
-                </div>
+
             @endif
             </tbody>
         </table>
+        <div class="pagination-div">
+            {{ $leaderboardDatas->links() }}
+        </div>
+
 
 
         <div class="body-campaign-data shadowed-element">
@@ -71,9 +91,9 @@
                 </span>
                 {{-- Navigation Timestamp --}}
                 <div class="btn-group btn-group-lg" id="nav-timestamp">
-                    <button type="button" id="nav-button-1" class="btn {{ $sortOption === 'byDeals' ? 'active' : '' }}" id="btn_today_agent_asuransi" onclick="window.location='{{ route('campaignAsuransi', ['sort' => 'byDeals']) }}'">by Deals</button>
+                    <button type="button" id="nav-button-1" class="btn {{ $sortOption === 'byDeals' ? 'active' : '' }}" id="btn_today_agent_asuransi" onclick="window.location='{{ route('sysAdminAsuransi', ['sort' => 'byDeals']) }}'">by Deals</button>
 
-                    <button type="button" id="nav-button-2" class="btn {{ $sortOption === 'byPremi' ? 'active' : '' }}" id="btn_tweek_agent_asuransi" onclick="window.location='{{ route('campaignAsuransi', ['sort' => 'byPremi']) }}'">by Premi</button>
+                    <button type="button" id="nav-button-2" class="btn {{ $sortOption === 'byPremi' ? 'active' : '' }}" id="btn_tweek_agent_asuransi" onclick="window.location='{{ route('sysAdminAsuransi', ['sort' => 'byPremi']) }}'">by Premi</button>
                 </div>
             </div>
 
@@ -202,9 +222,9 @@
             </span>
             {{-- Navigation Timestamp --}}
             <div class="btn-group btn-group-lg" id="nav-timestamp">
-                <button type="button" id="nav-button-1" class="btn {{ $sortOption === 'byDeals' ? 'active' : '' }}" id="btn_today_agent_asuransi" onclick="window.location='{{ route('campaignAsuransi', ['sort' => 'byDeals']) }}'">by Deals</button>
+                <button type="button" id="nav-button-1" class="btn {{ $sortOption === 'byDeals' ? 'active' : '' }}" id="btn_today_agent_asuransi" onclick="window.location='{{ route('sysAdminAsuransi', ['sort' => 'byDeals']) }}'">by Deals</button>
 
-                <button type="button" id="nav-button-2" class="btn {{ $sortOption === 'byPremi' ? 'active' : '' }}" id="btn_tweek_agent_asuransi" onclick="window.location='{{ route('campaignAsuransi', ['sort' => 'byPremi']) }}'">by Premi</button>
+                <button type="button" id="nav-button-2" class="btn {{ $sortOption === 'byPremi' ? 'active' : '' }}" id="btn_tweek_agent_asuransi" onclick="window.location='{{ route('sysAdminAsuransi', ['sort' => 'byPremi']) }}'">by Premi</button>
             </div>
         </div>
 
@@ -254,9 +274,9 @@
             </span>
             {{-- Navigation Timestamp --}}
             <div class="btn-group btn-group-lg" id="nav-timestamp">
-                <button type="button" id="nav-button-1" class="btn {{ $sortOption === 'byDeals' ? 'active' : '' }}" id="btn_today_agent_asuransi" onclick="window.location='{{ route('campaignAsuransi', ['sort' => 'byDeals']) }}'">by Deals</button>
+                <button type="button" id="nav-button-1" class="btn {{ $sortOption === 'byDeals' ? 'active' : '' }}" id="btn_today_agent_asuransi" onclick="window.location='{{ route('sysAdminAsuransi', ['sort' => 'byDeals']) }}'">by Deals</button>
 
-                <button type="button" id="nav-button-2" class="btn {{ $sortOption === 'byPremi' ? 'active' : '' }}" id="btn_tweek_agent_asuransi" onclick="window.location='{{ route('campaignAsuransi', ['sort' => 'byPremi']) }}'">by Premi</button>
+                <button type="button" id="nav-button-2" class="btn {{ $sortOption === 'byPremi' ? 'active' : '' }}" id="btn_tweek_agent_asuransi" onclick="window.location='{{ route('sysAdminAsuransi', ['sort' => 'byPremi']) }}'">by Premi</button>
             </div>
         </div>
 
@@ -304,6 +324,9 @@
 
     </div>
 
+
 </section>
+
+
 @endsection
 

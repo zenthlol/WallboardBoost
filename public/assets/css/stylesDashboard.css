@@ -3,18 +3,30 @@ body{
 }
 
 #header{
-    margin: auto;
-    width: 50%;
     display: flex;
-    text-align: center;
-    justify-content: center;
+    width: 100%;
     font-family: Poppins;
     font-size: 20px;
     font-weight: bold;
     margin-top: 20px;
-
+    justify-content: space-between;
+    align-items: center;
 }
 
+#header span{
+    display: flex;
+    width: 55%;
+    justify-content: flex-end;
+}
+
+
+.my-dropdown{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 70px;
+    width: 45%;
+}
 
 
 #table_dashboard{
@@ -27,6 +39,11 @@ body{
 
 .table-secondary th{
     color: #154c79;
+}
+
+.pagination-div{
+    right: 0;
+    margin: auto;
 }
 
 #body_content{
@@ -49,10 +66,7 @@ body{
 
 }
 
-.pagination{
-    max-width: 400px;
-    height: auto;
-}
+
 
 .body-campaign-data{
     background-color: white;
