@@ -17,22 +17,45 @@
     <span>
         Campaign Asuransi Data
     </span>
+
     <div class="my-dropdown">
         <p>Show data : </p>
         {{-- dropdown menu --}}
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown button
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </div>
-
+        <form action="{{ route('sysAdminAsuransi') }}" method="POST">
+            @csrf
+            <div class="dropdown">
+                <button id="dropdownMenuButton" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+                  Partners
+                </button>
+                <ul id="the-dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @foreach ($partners as $partner)
+                        <li><button type="submit" class="dropdown-item" name="selectedPartner" value="{{ $partner }}">{{ $partner }}</button></li>
+                    @endforeach
+                </ul>
+            </div>
+        </form>
 
     </div>
+
+
+    {{-- dropdown without form --}}
+
+    {{-- <div class="my-dropdown">
+        <p>Show data : </p>
+        {{-- dropdown menu --}}
+        {{-- <div class="dropdown">
+            <button id="dropdownMenuButton" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+              Partners
+            </button>
+            <ul id="the-dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                @foreach ($partners as $partner)
+                    <li><a class="dropdown-item" href="#" data-partner="{{ $partner }}">{{ $partner }}</a></li>
+                @endforeach
+
+            </ul>
+        </div>
+    </div>  --}}
+
 </section>
 
 

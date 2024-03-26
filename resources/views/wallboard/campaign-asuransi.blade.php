@@ -5,7 +5,6 @@
 {{-- Connect to css --}}
     <link rel="stylesheet" href="assets/css/stylesCampaignWB.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 @endsection

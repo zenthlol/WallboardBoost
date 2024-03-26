@@ -33,6 +33,8 @@ Route::get('/campaign-cc', [WallboardController::class, 'campaignCC'])->name('ca
 
 // DASHBOARD
 Route::get('/sys-admin-asuransi', [DashboardController::class, 'sysAdminAsuransi'])->name('sysAdminAsuransi');
+Route::post('/sys-admin-asuransi-post', [DashboardController::class, 'sysAdminAsuransiPost'])->name('sysAdminAsuransiPost');
+
 Route::get('/sys-admin-cc', [DashboardController::class, 'sysAdminCC'])->name('sysAdminCC');
 Route::get('/dashboard-spv-asuransi', [DashboardController::class, 'dashSpvAsuransi'])->name('dashSpvAsuransi');
 Route::get('/dashboard-spv-cc', [DashboardController::class, 'dashSpvCC'])->name('dashSpvCC');

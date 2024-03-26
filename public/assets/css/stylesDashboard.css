@@ -28,6 +28,9 @@ body{
     width: 45%;
 }
 
+.my-dropdown p{
+    margin-right: 20px;
+}
 
 #table_dashboard{
     margin: auto;
