@@ -1,4 +1,4 @@
-@extends('template.template')
+@extends('template.template2')
 
 
 @section('head')
@@ -20,41 +20,64 @@
 
     <div class="my-dropdown">
         <p>Show data : </p>
+
+        {{-- dropdown without form --}}
+
         {{-- dropdown menu --}}
-        <form action="{{ route('sysAdminAsuransi') }}" method="POST">
+        <div class="dropdown">
+            <button id="dropdownMenuButton" class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+                {{ request()->query('filter', 'All') }}
+            </button>
+            <ul id="the-dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                @foreach ($partners as $partner)
+                    <?php
+                    $filterUrl = route('sysAdminAsuransi', ['filter' => $partner]);
+
+                    ?>
+
+
+                    <li>
+                        <a class="dropdown-item" href="#" data-partner="{{ $partner }}" onclick="window.location='<?= $filterUrl ?>'">
+                            {{ $partner }}
+                        </a>
+                    </li>
+                @endforeach
+
+                <li>
+                    <a class="dropdown-item" href="{{ route('sysAdminAsuransi') }}">
+                        All
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+
+
+
+        {{-- dropdown menu --}}
+        {{-- <form action="{{ route('sysAdminAsuransi') }}" method="POST">
             @csrf
+
+
+
             <div class="dropdown">
                 <button id="dropdownMenuButton" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
                   Partners
                 </button>
+
                 <ul id="the-dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     @foreach ($partners as $partner)
                         <li><button type="submit" class="dropdown-item" name="selectedPartner" value="{{ $partner }}">{{ $partner }}</button></li>
                     @endforeach
                 </ul>
             </div>
-        </form>
+        </form> --}}
 
     </div>
 
 
-    {{-- dropdown without form --}}
 
-    {{-- <div class="my-dropdown">
-        <p>Show data : </p>
-        {{-- dropdown menu --}}
-        {{-- <div class="dropdown">
-            <button id="dropdownMenuButton" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
-              Partners
-            </button>
-            <ul id="the-dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                @foreach ($partners as $partner)
-                    <li><a class="dropdown-item" href="#" data-partner="{{ $partner }}">{{ $partner }}</a></li>
-                @endforeach
-
-            </ul>
-        </div>
-    </div>  --}}
 
 </section>
 
@@ -73,6 +96,7 @@
                 <th scope="col">TALK TIME</th>
                 <th scope="col">DEAL</th>
                 <th scope="col">TOTAL PREMI</th>
+                <th scope="col">PARTNER</th>
             </tr>
             </thead>
             <tbody>
@@ -95,6 +119,7 @@
                         <td>{{ $leaderboardData->Talks_Time }}</td>
                         <td>{{ $leaderboardData->DEAL }}</td>
                         <td>{{ $leaderboardData->PREMI }}</td>
+                        <td>{{ $leaderboardData->PARTNER }}</td>
                         </tr>
                 @endforeach
 
@@ -225,15 +250,15 @@
         {{-- CARD HEADER --}}
         <div class="card-row">
             <div class="card shadowed-element">
-                <span>100</span>
+                <span>{{ $totalCampaign }}</span>
                 Total Campaign
             </div>
             <div class="card shadowed-element">
-                <span>100</span>
+                <span>{{ $totalDeal }}</span>
                 Total Deals
             </div>
             <div class="card shadowed-element">
-                <span>100</span>
+                <span>{{ $totalPremi }}</span>
                 Total Premi
             </div>
         </div>
@@ -261,6 +286,7 @@
                     <th scope="col">Username</th>
                     <th scope="col">Deals</th>
                     <th scope="col">Premi</th>
+                    <th scope="col">Partner</th>
                 </tr>
             </thead>
 
@@ -283,6 +309,7 @@
                             <td>{{ $leaderboardData->CAMPAIGN_NAME }}</td>
                             <td>{{ $leaderboardData->DEAL }}</td>
                             <td>{{ $leaderboardData->PREMI }}</td>
+                            <td>{{ $leaderboardData->PARTNER }}</td>
                         </tr>
                 @endif
                 @endforeach
@@ -313,6 +340,7 @@
                     <th scope="col">Username</th>
                     <th scope="col">Deals</th>
                     <th scope="col">Premi</th>
+                    <th scope="col">Partner</th>
                 </tr>
             </thead>
 
@@ -335,6 +363,7 @@
                             <td>{{ $leaderboardData->CAMPAIGN_NAME }}</td>
                             <td>{{ $leaderboardData->DEAL }}</td>
                             <td>{{ $leaderboardData->PREMI }}</td>
+                            <td>{{ $leaderboardData->PARTNER }}</td>
                         </tr>
                 @endif
                 @endforeach

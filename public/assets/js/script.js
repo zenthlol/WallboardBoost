@@ -45,13 +45,13 @@ var btn_tmonth_agent_asuransi = document.getElementById("btn_tmonyh_agent_asuran
 // });
 
 // v3
-const dropdownMenu = document.getElementById('the-dropdown-menu');
+// const dropdownMenu = document.getElementById('the-dropdown-menu');
 
-dropdownMenu.addEventListener('click', function(event) {
-    const clickedItem = event.target;
-    if (clickedItem.classList.contains('dropdown-item')) {
-      const selectedPartner = clickedItem.dataset.partner;
-      // Call a function to handle filtering based on partner (explained later)
-      handlePartnerFilter(selectedPartner);
-    }
-  });
+// dropdownMenu.addEventListener('click', function(event) {
+//     const clickedItem = event.target;
+//     if (clickedItem.classList.contains('dropdown-item')) {
+//       const selectedPartner = clickedItem.dataset.partner;
+//       // Call a function to handle filtering based on partner (explained later)
+//       handlePartnerFilter(selectedPartner);
+//     }
+// });
